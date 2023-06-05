@@ -1,8 +1,12 @@
 class BankAccount:
 
+    all_accounts = []
+
     def __init__(self, interest_rate, balance):
         self.interest_rate = interest_rate
         self.balance = balance
+
+        BankAccount.all_accounts.append(self)
 
     def deposit(self, amount):
         if amount > 0:
@@ -30,7 +34,14 @@ class BankAccount:
         print(f"After an interest yield of {self.interest_rate}%, your new balance is ${self.balance}.\n")
         return self
 
+    @classmethod
+    def all_instances(cls):
+        for account in cls.all_accounts:
+            account.display_account_info()
+
 john, tammy = BankAccount(0.01, 100), BankAccount(0.03, 400)
 
 john.deposit(100).deposit(40).deposit(900).yield_interest().display_account_info()
 tammy.deposit(1).deposit(2).deposit(3).withdraw(10).withdraw(11).withdraw(100).withdraw(tammy.balance + 4).display_account_info()
+
+BankAccount.all_instances()
