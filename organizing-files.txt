@@ -1,0 +1,111 @@
+mark@DESKTOP-VTCTKIO:/mnt/c/Users/Mark/Desktop/Coding Dojo$ mkdir python
+mark@DESKTOP-VTCTKIO:/mnt/c/Users/Mark/Desktop/Coding Dojo$ cd python/
+mark@DESKTOP-VTCTKIO:/mnt/c/Users/Mark/Desktop/Coding Dojo/python$ mkdir ajax flask flask_mysql fundamentals mysql
+mark@DESKTOP-VTCTKIO:/mnt/c/Users/Mark/Desktop/Coding Dojo/python$ ls -lah
+total 0
+drwxrwxrwx 1 mark mark 512 May 16 14:13 .
+drwxrwxrwx 1 mark mark 512 May 16 14:12 ..
+drwxrwxrwx 1 mark mark 512 May 16 14:13 ajax
+drwxrwxrwx 1 mark mark 512 May 16 14:13 flask
+drwxrwxrwx 1 mark mark 512 May 16 14:13 flask_mysql
+drwxrwxrwx 1 mark mark 512 May 16 14:13 fundamentals
+drwxrwxrwx 1 mark mark 512 May 16 14:13 mysql
+mark@DESKTOP-VTCTKIO:/mnt/c/Users/Mark/Desktop/Coding Dojo/python$ cd ajax/
+mark@DESKTOP-VTCTKIO:/mnt/c/Users/Mark/Desktop/Coding Dojo/python/ajax$ mkdir ajax_api ajax_flask
+mark@DESKTOP-VTCTKIO:/mnt/c/Users/Mark/Desktop/Coding Dojo/python/ajax$ cd ajax/
+-bash: cd: ajax/: No such file or directory
+mark@DESKTOP-VTCTKIO:/mnt/c/Users/Mark/Desktop/Coding Dojo/python/ajax$ ls -lah
+total 0
+drwxrwxrwx 1 mark mark 512 May 16 14:13 .
+drwxrwxrwx 1 mark mark 512 May 16 14:13 ..
+drwxrwxrwx 1 mark mark 512 May 16 14:13 ajax_api
+drwxrwxrwx 1 mark mark 512 May 16 14:13 ajax_flask
+mark@DESKTOP-VTCTKIO:/mnt/c/Users/Mark/Desktop/Coding Dojo/python/ajax$ cd ..
+mark@DESKTOP-VTCTKIO:/mnt/c/Users/Mark/Desktop/Coding Dojo/python$ cd flask
+mark@DESKTOP-VTCTKIO:/mnt/c/Users/Mark/Desktop/Coding Dojo/python/flask$ cd ..
+mark@DESKTOP-VTCTKIO:/mnt/c/Users/Mark/Desktop/Coding Dojo/python$ mkdir flask/fundamentals
+mark@DESKTOP-VTCTKIO:/mnt/c/Users/Mark/Desktop/Coding Dojo/python$ cd flask/fundamentals/
+mark@DESKTOP-VTCTKIO:/mnt/c/Users/Mark/Desktop/Coding Dojo/python/flask/fundamentals$ cd ..
+mark@DESKTOP-VTCTKIO:/mnt/c/Users/Mark/Desktop/Coding Dojo/python/flask$ cd ..
+mark@DESKTOP-VTCTKIO:/mnt/c/Users/Mark/Desktop/Coding Dojo/python$ mkdir flask_mysql/belt-review flask_mysql/crud flask_mysql/db_connection flask_mysql/validation
+mark@DESKTOP-VTCTKIO:/mnt/c/Users/Mark/Desktop/Coding Dojo/python$ mkdir fundamentals/extras fundamentals/fundamentals fundamentals/introducion fundamentals/oop mysql/erd mysql/queries
+mark@DESKTOP-VTCTKIO:/mnt/c/Users/Mark/Desktop/Coding Dojo/python$ tree
+-bash: tree: command not found
+mark@DESKTOP-VTCTKIO:/mnt/c/Users/Mark/Desktop/Coding Dojo/python$ sudo apt-get install tree
+[sudo] password for mark: 
+Sorry, try again.
+[sudo] password for mark:
+Sorry, try again.
+[sudo] password for mark:
+sudo: 3 incorrect password attempts
+mark@DESKTOP-VTCTKIO:/mnt/c/Users/Mark/Desktop/Coding Dojo/python$ apt-get install tree
+E: Could not open lock file /var/lib/dpkg/lock-frontend - open (13: Permission denied)
+E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are you root?
+mark@DESKTOP-VTCTKIO:/mnt/c/Users/Mark/Desktop/Coding Dojo/python$ sudo apt-get install tree
+[sudo] password for mark: 
+Sorry, try again.
+[sudo] password for mark:
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following NEW packages will be installed:
+  tree
+0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+Need to get 49.6 kB of archives.
+After this operation, 118 kB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian bullseye/main amd64 tree amd64 1.8.0-1+b1 [49.6 kB]
+Fetched 49.6 kB in 10s (4,879 B/s)
+Selecting previously unselected package tree.
+(Reading database ... 23201 files and directories currently installed.)
+Preparing to unpack .../tree_1.8.0-1+b1_amd64.deb ...
+Unpacking tree (1.8.0-1+b1) ...
+Setting up tree (1.8.0-1+b1) ...
+mark@DESKTOP-VTCTKIO:/mnt/c/Users/Mark/Desktop/Coding Dojo/python$ tree
+.
+├── ajax
+│   ├── ajax_api
+│   └── ajax_flask
+├── flask
+│   └── fundamentals
+├── flask_mysql
+│   ├── belt-review
+│   ├── crud
+│   ├── db_connection
+│   └── validation
+├── fundamentals
+│   ├── extras
+│   ├── fundamentals
+│   ├── introducion
+│   └── oop
+└── mysql
+    ├── erd
+    └── queries
+
+18 directories, 0 files
+mark@DESKTOP-VTCTKIO:/mnt/c/Users/Mark/Desktop/Coding Dojo/python$ cd .. tree
+-bash: cd: too many arguments
+mark@DESKTOP-VTCTKIO:/mnt/c/Users/Mark/Desktop/Coding Dojo/python$ cd .. 
+mark@DESKTOP-VTCTKIO:/mnt/c/Users/Mark/Desktop/Coding Dojo$ tree/python
+-bash: tree/python: No such file or directory
+mark@DESKTOP-VTCTKIO:/mnt/c/Users/Mark/Desktop/Coding Dojo$ tree ./python
+./python
+├── ajax
+│   ├── ajax_api
+│   └── ajax_flask
+├── flask
+│   └── fundamentals
+├── flask_mysql
+│   ├── belt-review
+│   ├── crud
+│   ├── db_connection
+│   └── validation
+├── fundamentals
+│   ├── extras
+│   ├── fundamentals
+│   ├── introducion
+│   └── oop
+└── mysql
+    ├── erd
+    └── queries
+
+18 directories, 0 files
