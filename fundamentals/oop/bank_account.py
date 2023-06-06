@@ -9,6 +9,7 @@ class BankAccount:
         BankAccount.all_accounts.append(self)
 
     def deposit(self, amount):
+        amount = float(amount)
         if amount > 0:
             self.balance += amount
             print(f"\nYou have just deposited ${amount}.\nYour current balance is now ${self.balance}.\n")
@@ -17,6 +18,7 @@ class BankAccount:
         return(self)
 
     def withdraw(self, amount):
+        amount = float(amount)
         if amount > 0:
             if self.balance - amount >= 0:
                 self.balance -= amount
@@ -39,9 +41,11 @@ class BankAccount:
         for account in cls.all_accounts:
             account.display_account_info()
 
-john, tammy = BankAccount(0.01, 100), BankAccount(0.03, 400)
+if __name__ == "__main__":
+    john, tammy = BankAccount(0.01, 100), BankAccount(0.03, 400)
 
-john.deposit(100).deposit(40).deposit(900).yield_interest().display_account_info()
-tammy.deposit(1).deposit(2).deposit(3).withdraw(10).withdraw(11).withdraw(100).withdraw(tammy.balance + 4).display_account_info()
+    john.deposit(100).deposit(40).deposit(900).yield_interest().display_account_info()
+    tammy.deposit(1).deposit(2).deposit(3).withdraw(10).withdraw(11).withdraw(100).withdraw(tammy.balance + 4).display_account_info()
 
-BankAccount.all_instances()
+    BankAccount.all_instances()
+

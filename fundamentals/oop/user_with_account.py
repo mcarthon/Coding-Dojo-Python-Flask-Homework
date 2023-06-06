@@ -24,9 +24,8 @@ class User:
         print(f"\n{self.name} has successfully sent ${amount} to {other_user.name}.\n")    
         return self
 
+if __name__ == "__main__":
+    anthony = User("anthony", "anthony@email.com")
+    shakira = User("shakira", "shakira@email.com")
 
-
-anthony = User("anthony", "anthony@email.com")
-shakira = User("shakira", "shakira@email.com")
-
-anthony.transfer_money(shakira, "checking", 500, "savings")
+    anthony.transfer_money(shakira, "checking", 500, "savings")
