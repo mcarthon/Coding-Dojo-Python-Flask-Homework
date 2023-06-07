@@ -12,6 +12,9 @@ class SinglyLinkedList:
         return self 
 
     def traverse_and_print(self):
+        if self.head == None:
+            return self
+        
         runner = self.head
         print(runner.value)
 
@@ -22,6 +25,9 @@ class SinglyLinkedList:
         return self
 
     def traverse(self):
+        if self.head == None:
+            return self
+        
         runner = self.head
 
         while runner.next != None:
@@ -30,6 +36,9 @@ class SinglyLinkedList:
         return self
 
     def traverse_and_append(self, value):
+        if self.head == None:
+            return self
+        
         runner = self.head
         new_node = Node(value)
 
@@ -42,6 +51,9 @@ class SinglyLinkedList:
         return self
 
     def remove_from_front(self):
+        if self.head == None:
+            return self
+
         original_head = self.head
         self.head = original_head.next
         original_head.next = None
@@ -49,6 +61,13 @@ class SinglyLinkedList:
         return self
 
     def remove_from_back(self):
+        if self.head == None:
+            return self
+
+        if self.head.next == None:
+            self.head = None
+            return self
+
         runner = self.head
 
         while runner.next != None:
@@ -60,6 +79,9 @@ class SinglyLinkedList:
         return self
 
     def remove_val(self, value):
+        if self.head == None:
+            return self
+
         # check if we want to remove the very first value
         runner = self.head
         if runner.value == value:
@@ -76,13 +98,23 @@ class SinglyLinkedList:
             else:
                 runner = runner.next
 
-        # if none of the above, remove the last item
-        self.remove_from_back()
+        # if none of the above, check the last item
+        if runner.value == value:
+            self.remove_from_back()
         return self
 
         
 
     def insert_at(self, value, special_index):
+        special_index = int(special_index)
+
+        if (special_index < 0) or (self.head == None and special_index != 0):
+            return self
+        
+        if self.head == None:
+            self.add_to_front(value)
+            return self
+        
         runner = self.head
 
         # check if we need to change the first value
@@ -111,3 +143,8 @@ if __name__ == "__main__":
     sllist.add_to_front(3).add_to_front(4).add_to_front(5).add_to_front(6)\
         .traverse_and_append(2).remove_from_front().remove_from_back().remove_val(3)\
             .add_to_front(100).traverse_and_append(101).insert_at(99, 3).traverse_and_print()
+    print()
+
+    sllist_edge = SinglyLinkedList()
+
+    sllist_edge.add_to_front(2).remove_from_back().traverse_and_print()
