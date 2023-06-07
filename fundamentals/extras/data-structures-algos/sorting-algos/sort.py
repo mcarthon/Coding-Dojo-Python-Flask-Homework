@@ -32,6 +32,32 @@ class Sort:
 
         return array     
 
+    def insertion_sort(self, array: list[int]) -> list[int]:
+        
+        if len(array) < 2:
+            return array
+
+        selected_index = 1
+        runner_index = 0
+
+        while selected_index < len(array):
+            while runner_index < selected_index:
+                if array[selected_index] < array[runner_index]:
+                    temp = array[selected_index]
+                    array[selected_index] = array[runner_index]
+                    array[runner_index] = temp
+                runner_index += 1
+            selected_index +=1
+            runner_index = 0
+        
+        return array
+
+
+
+
+
+
+
 if __name__ == "__main__":    
     sort = Sort()
     array = [5,4,3,2,1,2,3,4,5]
@@ -48,3 +74,18 @@ if __name__ == "__main__":
 
     array = [-5,4,3,2,-1,2,3,-4,-5]
     print(sort.selection_sort(array))
+
+    array = [5,4,3,2,1,2,3,4,5]
+    print(sort.insertion_sort(array))
+
+    array = []
+    print(sort.insertion_sort(array))
+
+    array = [5]
+    print(sort.insertion_sort(array))
+
+    array = [1,2,3,4,5]
+    print(sort.insertion_sort(array))
+
+    array = [-5,4,3,2,-1,2,3,-4,-5]
+    print(sort.insertion_sort(array))
