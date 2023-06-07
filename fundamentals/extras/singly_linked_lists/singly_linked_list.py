@@ -37,6 +37,7 @@ class SinglyLinkedList:
 
     def traverse_and_append(self, value):
         if self.head == None:
+            self.head = value
             return self
         
         runner = self.head
