@@ -1,3 +1,5 @@
+import unittest
+
 class MathDojo:
 
     def __init__(self):
@@ -13,6 +15,21 @@ class MathDojo:
             self.num1 -= num
         return self
 
-math_dojo = MathDojo()
+class MathDojoTests(unittest.TestCase):
 
-print(math_dojo.add(3, 5).subtract(4, 5).num1)
+    def setUp(self):
+        self.math_dojo = MathDojo()
+
+    def testOne(self):
+        self.assertEqual(self.math_dojo.add(-1, 0 , 1, 2).num1, 2)
+
+    def testTwo(self):
+        self.assertEqual(self.math_dojo.subtract(-1, 0 , 1, 2).num1, -2)
+
+    def tearDown(self):
+        self.math_dojo = None
+
+if __name__ == "__main__":
+    unittest.main()
+
+# print(math_dojo.add(3, 5).subtract(4, 5).num1)
