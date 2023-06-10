@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja Gold</title>
+    <link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename = 'ninja.css')}}">
+</head>
+<body>
+    <div class = "container">
+        <div class = "top-bar">
+            <label for = "your-gold">
+                Your Gold: 
+            </label>
+            <input name = "your-gold" type = "text" placeholder="0">
+            <a href = "/reset"><button>Reset</button></a>
+        </div>
+        
+        <div class = "boxes-container">
+            <form action = "/process_money" method = "post">
+                <input type = "hidden" name = "which_form" value = "farm">
+            <div class = "box">
+                <h1>
+                    Farm
+                </h1>
+                <h2>
+                    (earns 10-20 gold)
+                </h2>
+                <input type = "submit" value = "Find Gold!" name = "farm-gold">
+            </div>
+        </form>
+        <form action = "/process_money" method = "post">
+            <input type = "hidden" name = "which_form" value = "cave">
+            <div class = "box">
+                <h1>
+                    Cave
+                </h1>
+                <h2>
+                    (earns 5-10 gold)
+                </h2>
+                <input type = "submit" value = "Find Gold!" name = "cave-gold">
+            </div>
+        </form>
+        <form method = "post" action = "/process_money">
+            <input type = "hidden" name = "which_form" value = "house">
+            <div class = "box">
+                <h1>
+                    House
+                </h1>
+                <h2>
+                    (earns 2-5 golds)
+                </h2>
+                <input type = "submit" value = "Find Gold!" name = "house-hold">
+            </div>
+        </form>
+        <form method = "post" action = "/process_money">
+            <input type = "hidden" name = "which_form" value = "casino">
+            <div class = "box">
+                <h1>
+                    Casino
+                </h1>
+                <h2>
+                    (earns/takes 0-50 golds)
+                </h2>
+                <input type = "submit" value = "Find Gold!" name = "casino-gold">
+            </div>
+        </form>
+        </div>
+    
+        <div class = "activities">
+            <h3>
+                Activities
+            </h3>
+            <div class = "activities-text">
+            <p>
+                Earned {{ session["farm_increase"] }}  <br>
+            </p>
+            <p>
+                Earned {{ session["cave_increase"] }} <br>
+            </p>
+            <p>
+                Earned {{ session["house_increase"] }} <br>
+            </p>
+            <p>
+                Earned {{ session["casino_increase"] }} 
+            </p>
+            
+        </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+.boxes-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box {
+    border: 1px solid black;
+    margin: 50px;
+    padding: 50px;
+}
+
+.activities-text {
+    border: 1px solid black;
+    padding: 0px 30px;
+}
+
+.top-bar {
+    display: flex;
+    align-content: center;
+}
+
