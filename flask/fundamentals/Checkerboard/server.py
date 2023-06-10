@@ -17,4 +17,4 @@ def home_page(url_x: int = 8, url_y: int = 8, url_color1: str = "red", url_color
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port = 5002)
