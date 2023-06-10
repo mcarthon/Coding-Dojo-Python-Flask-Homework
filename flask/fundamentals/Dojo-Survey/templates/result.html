@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojo Survey</title>
+</head>
+<body>
+    <div class = "form-container">
+        <h1>
+           Submitted Info 
+        </h1>
+        <h2>
+            Name: {{ session["form-submit"]["name"] }}
+        </h2>
+        <h2>
+            Dojo Location: {{ session["form-submit"]["location"] }}
+        </h2>
+        <h2>
+            Favorite Language: {{ session["form-submit"]["langauge"] }}
+        </h2>
+        <h2>
+            Comment: {{ session["form-submit"]["comment"] }}
+        </h2>
+    </div>
+</body>
+</html>
