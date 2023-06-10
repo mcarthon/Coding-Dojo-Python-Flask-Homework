@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Great Number Game</title>
+    <link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename = 'number-game.css')}}">
+</head>
+<body>
+    <div class = "container">
+        <h1 class = "title">
+            Welcome to the Great Number Game!
+        </h1>
+        <h2>
+            I am thinking of a number between 1 and 100
+        </h2>
+        <h2>
+            Take a guess!
+        </h2>
+        {% if  lose %}
+        <div class = "color-box" style = "background-color: red;">
+            <h1 style = "color: white;">
+                You Lose
+            </h1>
+        </div>
+        <a href = "/reset"><button>
+            Play Again
+        </button></a>
+        {% elif low_display %}
+        <div class = "color-box" style = "background-color: red;">
+            <h1 style = "color: white;">
+                Too Low
+            </h1>
+        </div>
+        {% elif high_display %}
+        <div class = "color-box" style = "background-color: red;">
+            <h1 style = "color: white;">
+                Too High
+            </h1>
+        </div>
+        {% elif correct_display %}
+        <div class = "color-box" style = "background-color: green;">
+            <h1 style = "color: white;">
+                Correct -> {{session["correct_number"]}}
+            </h1>
+            <h1 style = "color: white;">
+                You needed {{session["num_guesses"]}} guesses
+            </h1>
+            <a href = "/reset"><button>
+                Play Again
+            </button></a>
+        </div>
+        {% endif %}
+        <form action = "/number-input" method = "post">
+            <input type = "number" name = "guess">
+            <input type = "submit" name = "submit">
+        </form>
+    </div>
+</body>
+</html>
