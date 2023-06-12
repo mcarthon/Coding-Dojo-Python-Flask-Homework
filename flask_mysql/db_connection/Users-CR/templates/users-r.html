@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users R</title>
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='users-r.css') }}"> -->
+</head>
+<body>
+    <div class = "big-container">
+        <h1>All Users</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Full Name
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Created At
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in users %}
+                <tr>                   
+                    <td>
+                        {{ row["first_name"] }}
+                    </td>
+                    <td>
+                        {{ row["last_name"] }}
+                    </td>
+                    <td>
+                        {{ row["email"] }}
+                    </td>
+                    <td>
+                        {{ row["created_at"] }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <a href = "/add_user">Add New User</a>
+    
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users C</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='users-r.css') }}">
+</head>
+
+<body>
+    <div class = "top-container">
+        <h1>
+            Add a New User
+        </h1>
+        <a href = "/">Home</a>
+    </div>
+    
+    <form action = "/create" method = "post" >
+        <label for = "first_name">
+            First Name:
+        </label>
+        <input type = "text" placeholder = "Java is the best" name = "first_name">
+        
+        <label for = "last_name">
+            Last Name:
+        </label>
+        <input type = "text" placeholder = "Java #1" name = "last_name">
+        
+        <label for = "email">
+            Email:
+        </label>
+        <input type = "text" placeholder = "java@java.java" name = email>
+        
+        <input type = "submit" value = "create" name = "submit">
+    </form>
+        
+</body>
+
+</html>
