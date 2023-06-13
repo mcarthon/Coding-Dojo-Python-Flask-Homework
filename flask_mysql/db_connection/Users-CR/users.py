@@ -40,6 +40,18 @@ class User:
         
         return users
     
+    @classmethod        
+    def get_one(cls, id):
+        query = """
+                SELECT *
+                FROM users
+                WHERE id = %(id)s;
+                """
+        query_result = connectToMySQL("users_schema").query_db(query, {"id": id})
+        print(query_result)
+        user = cls(query_result[0])
+        return user
+    
     @classmethod    
     def create(cls, data):
         sql_query = """
@@ -48,4 +60,31 @@ class User:
                     VALUES
                     (%(first_name)s, %(last_name)s, %(email)s, NOW(), NOW());
                     """
+                               
+        return connectToMySQL("users_schema").query_db(sql_query, data) 
+    
+    @classmethod    
+    def update(cls, data):
+        sql_query = """
+                    UPDATE users
+                    SET 
+                        first_name = %(first_name)s,
+                        last_name  = %(last_name)s,
+                        email      = %(email)s,
+                        updated_at = NOW()
+                    WHERE
+                        id = %(id)s;
+                    """
+        
         return connectToMySQL("users_schema").query_db(sql_query, data)
+        
+    @classmethod
+    def delete(cls, id):
+        sql_query = """
+                    DELETE FROM users
+                    WHERE id = %(id)s;
+                    """
+        data = {"id": id}
+        return connectToMySQL("users_schema").query_db(sql_query, data)
+        
+    

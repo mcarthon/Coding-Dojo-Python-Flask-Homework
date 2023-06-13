@@ -11,30 +11,31 @@
 <body>
     <div class = "top-container">
         <h1>
-            Add a New User
+            Edit User
         </h1>
         <a href = "/">Home</a>
     </div>
     
-    <form action = "/create" method = "post">
+    <form action = "/update"  method = "post" >
+        <input type = "hidden" name = "id" value = {{user["id"]}}>
         <label for = "first_name">
             First Name:
         </label>
-        <input type = "text" placeholder = "Java is the best" name = "first_name">
+        <input type = "text" name = "first_name" value = "{{user["first_name"] }}">
         
         <label for = "last_name">
             Last Name:
         </label>
-        <input type = "text" placeholder = "Java #1" name = "last_name">
+        <input type = "text" name = "last_name" value = "{{ user["last_name"] }}">
         
         <label for = "email">
             Email:
         </label>
-        <input type = "text" placeholder = "java@java.java" name = email>
+        <input type = "text" name = email value = "{{ user["email"] }}">
         
-        <input type = "submit" value = "Create" name = "submit">
+        <input type = "submit" value = "Update">
     </form>
-        
+    <a href = {{"/show_user/" ~ user["id"] }}>Show User</a>
 </body>
 
 </html>

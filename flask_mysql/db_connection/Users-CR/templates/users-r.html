@@ -13,34 +13,25 @@
         <table>
             <thead>
                 <tr>
-                    <th>
-                        ID
-                    </th>
-                    <th>
-                        Full Name
-                    </th>
-                    <th>
-                        Email
-                    </th>
-                    <th>
-                        Created At
-                    </th>
+                    <th>ID</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 {% for row in users %}
-                <tr>                   
+                <tr>
+                    <td>{{ row["id"] }}</td>            
+                    <td>{{ row["first_name"] }}</td>         
+                    <td>{{ row["last_name"] }}</td>
+                    <td>{{ row["email"] }}</td>
+                    <td>{{ row["created_at"] }}</td>
                     <td>
-                        {{ row["first_name"] }}
-                    </td>
-                    <td>
-                        {{ row["last_name"] }}
-                    </td>
-                    <td>
-                        {{ row["email"] }}
-                    </td>
-                    <td>
-                        {{ row["created_at"] }}
+                        <a href = {{ "/show_user/" ~ row["id"] }}>Show</a>|
+                        <a href = {{ "/edit_user/" ~ row["id"] }} >Edit</a>|
+                        <a href = {{ "/delete/" ~ row["id"] }} >Delete</a>
                     </td>
                 </tr>
                 {% endfor %}
