@@ -1,6 +1,6 @@
 # The cursor is the object we use to interact with the database
 import pymysql.cursors
-import credentials
+from flask_app import credentials
 
 # This class will give us an instance of a connection to our database
 class MySQLConnection:
