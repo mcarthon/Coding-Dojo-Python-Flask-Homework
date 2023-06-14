@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Ninja</title>
+</head>
+
+<body>
+    <h1>
+        New Ninja
+    </h1>
+    <form action="/add-ninja" method="post">
+        <label for="dojo">
+            Dojo:
+        </label>
+        <select name="dojo_id">
+            {% for dojo in dojos %}
+            <option value="{{dojo.id}}">
+                {{ dojo.name }}
+            </option>
+            {% endfor %}
+        </select>
+        <label for="first_name">
+            First Name:
+        </label>
+        <input type="text" name="first_name" placeholder="Java Bros">
+        <label for="last_name">
+            Last Name:
+        </label>
+        <input type="text" name="last_name" placeholder="Java to the Moon">
+        <label for="age">
+            Age:
+        </label>
+        <input type="text" name="age" placeholder="42">
+        <input type=submit name="submit" value="Create">
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+.big-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left-container {
+    margin: 0px 200px 0px 0px;
+}
+
+#add-ninja {
+    margin: 20px 0px 0px 0px;
+}
+
+* {
+    border: 1px solid black;
+}
