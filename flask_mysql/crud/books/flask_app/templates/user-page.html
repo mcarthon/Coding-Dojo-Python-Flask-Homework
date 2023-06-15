@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Author Info Page</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='page.css') }}">
+</head>
+
+<body>
+    <div class = "big-container">
+        <div class = "left-container">
+            <h1>{{user.name}}'s favorites</h1>
+            {% for user_fav in user_favs %}
+                <h2>{{user_fav.name}}</h2>
+            {% endfor %}
+        <div class = "right-container">
+           <h1>Add Author's Favorite</h1>
+           <form action="/add-fav-book/{{user.id}}" method="post">
+            <label>Book:</label>
+            <select name="book-name">
+                {% for book in books: %}
+                    <option value="{{book.id}}">{{book.name}}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" name="submit" value="Add">
+           </form>
+        </div>
+        <a href="/">Home</a>
+    </div>                
+</body>
+</html>

@@ -1,7 +1,7 @@
 
 #!/bin/bash
 
-project_folder_name="dojos_and_ninjas"
+project_folder_name="books"
 
 mkdir "${project_folder_name}"
 
@@ -21,7 +21,7 @@ mkdir config controllers models static templates
 
 touch __init__.py credentials.py .gitignore
 
-touch ./config/mysqlconnection.py 
+touch ./config/mysqlconnection.py
 
 #touch "./controllers/${project_name}.py"
 

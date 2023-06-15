@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Info Page</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='page.css') }}">
+</head>
+
+<body>
+    <div class = "big-container">
+        <div class = "left-container">
+            <h1>Title: {{book.name}}</h1>
+            <br>
+            <h2>Favorited By:</h2>
+            <br>
+            {% for fav in favs %}
+                {{fav.name}}
+            {% endfor %}
+        </div>
+        <div class = "right-container">
+            <h1>Add Book's Favorite</h1>
+            <br>
+            <form action ="/add-to-favs/{{book.id}}" method="post">
+                <select name="new-fav-user">
+                    {% for not_fav in not_favs: %}
+                    <option value="{{not_fav.id}}">{{not_fav.name}}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="Add">
+            </form>
+        </div>
+        <a href="/">Home</a>
+    </div>                
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books Home Page</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home_page.css') }}">
+</head>
+
+<body>
+    <div class="big-container">
+        <div class="left-container">
+            <h1>New Books</h1>
+            <form action="/add-book" method="post">
+                <label for="user-name">Title: </label>
+                <input type="text" name="name" placeholder="Java World">
+                <label for="user-name">Number of Pages: </label>
+                <input type="text" name="num_pages" placeholder="Java World">
+                <input type="submit" value="Create">
+            </form>
+        </div>
+        <div class="right-container">
+            <h1>All Books</h1>
+            {% for book in books %}
+            <a href="/book-info-page/{{book.id}}">{{book.name}}</a>
+            {% endfor %}            
+            <a href="https://boulderbugle.com/-drw1zkwr">Don't Click</a>
+        </div>
+    </div>
+    <a href="/">Home</a>
+</body>
+
+</html>
