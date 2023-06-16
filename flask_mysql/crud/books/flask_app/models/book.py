@@ -51,7 +51,7 @@ class Book:
     def get_favs(cls, data):
         
         query = """
-                SELECT users.id,
+                SELECT DISTINCT users.id,
                        users.name,
                        users.created_at,
                        users.updated_at
@@ -64,28 +64,29 @@ class Book:
                 """
         
         query_results = connectToMySQL(schema).query_db(query, data)
-        
+        print(query_results)
         favs = []
         
         for fav in query_results:
-            favs.append(cls(fav))
-            
+            favs.append(fav)
+        print(favs)
         return favs
         
     @classmethod
     def find_not_favs(cls, data):
         
         query = """
-                SELECT DISTINCT users.name,
-                                users.id, 
-                                users.created_at,
-                                users.updated_at 
+                SELECT DISTINCT users.id,
+                       users.name,
+                       users.created_at,
+                       users.updated_at 
                 FROM users
-                JOIN orders
-                ON users.id = orders.user_id
-                JOIN books
-                ON orders.book_id = books.id
-                WHERE books.id != %(id)s;
+                WHERE id
+                NOT IN (
+                    SELECT user_id
+                    FROM orders
+                    WHERE book_id = %(id)s
+                );
                 """    
         query_results = connectToMySQL(schema).query_db(query, data)
         
@@ -105,7 +106,9 @@ class Book:
                 VALUES
                 (%(user_id)s, %(book_id)s);
                 """
-        return connectToMySQL(schema).query_db(query, data)
+        result = connectToMySQL(schema).query_db(query, data)
+        print(result)
+        return result
         
     @classmethod
     def get_user_favs(cls, data):
