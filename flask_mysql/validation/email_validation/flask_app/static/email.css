@@ -1,0 +1,17 @@
+.alert {
+    background-color: red;
+    height: 30px;
+    width: 170px;
+    margin-bottom: 10px;
+}
+
+#messages {
+    color: black;
+}
+
+#invalid_pTag {
+    color: white;
+    position: relative;
+    top: 5px;
+    left: 20px;
+}

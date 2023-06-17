@@ -1,0 +1,16 @@
+.success {
+    background-color: green;
+    height: 50px;
+    width: 150px;
+    margin-bottom: 10px;
+}
+
+#success-p{
+    color: white;
+    position: relative;
+    top: 5px;
+    left: 20px;
+}
+p {
+    color: black;
+}

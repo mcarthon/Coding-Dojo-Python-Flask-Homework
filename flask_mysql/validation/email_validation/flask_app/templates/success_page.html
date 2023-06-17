@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Successful Email</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='success.css') }}">
+</head>
+
+<body>
+     <div class="success">
+        <p id="success-p">The email address you entered {{session["email"]}}<br>
+        is a valid email address</p>
+     </div>       
+     <h2>Email Addresses Entered</h2>
+     
+     <form action="/delete" method="post">
+        <select name="email_id">
+            {% for email in emails: %}
+                <option value={{email.id}}>{{email.email}}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Delete">
+     </form>
+     
+     {% for email in emails %}     
+        <p>{{email.email}}</p>
+     {% endfor %}
+</body>
+</html>
