@@ -12,7 +12,7 @@ mkdir flask_app
 
 touch server.py
 
-pipenv install flask PyMySQL
+pipenv install flask PyMySQL flask-bcrypt
 
 cd flask_app
 

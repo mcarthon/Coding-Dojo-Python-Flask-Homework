@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+</head>
+
+<body>
+    <h1>Register</h1>
+    <form action="/submit-registration", method="post">
+        
+        <label for="first_name">First Name: </label>                
+        <input type="text" name="first_name" value="harry">
+        
+        <label for="last_name">Last Name: </label>                
+        <input type="text" name="last_name" value="styles">
+        
+        <label for="email">Email: </label>                
+        <input type="email" name="email" value="harry@styles.edu">
+        
+        <label for="email">Confirm Email: </label>                
+        <input type="text" name="confirm_email" value="harry@styles.edu">
+        
+        <label for="password">Password: </label>                
+        <input type="password" name="password" value="hahatoto">
+        
+        <label for="password">Confirm Password: </label>                
+        <input type="password" name="confirm_password" value="hahatoto">
+        
+        <input type="submit" value="Register">
+        
+    </form>      
+    <a href="/"><button>Home</button></a>
+    {% with messages = get_flashed_messages() %}      
+        {% if messages: %}
+            {% for message in messages %}
+                <p>{{message}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</body>
+</html>
