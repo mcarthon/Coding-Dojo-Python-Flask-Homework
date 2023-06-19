@@ -1,0 +1,7 @@
+.topnav {
+    display: flex;
+    align-items: last baseline;
+    justify-content: space-between; 
+    border-bottom: 1px solid black;
+}
+

@@ -1,0 +1,30 @@
+.big-container {
+    display:flex;
+    align-items: top;
+    justify-content: center;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.left-container {
+    width: 25%;
+    height: 600px;
+    display: block;
+    margin-right: 100px;
+}
+
+.right-container {
+    width: 20%;
+}
+
+label, input {
+    display: block;
+}
+
+label {
+    margin-bottom: 6px;
+}
+
+input {
+    margin-top: 1px;
+}

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-project_folder_name="login_and_registration"
+project_folder_name="private_wall"
 
 mkdir "${project_folder_name}"
 
@@ -22,10 +22,10 @@ touch __init__.py credentials.py .gitignore
 
 touch ./config/mysqlconnection.py 
 
-touch "./controllers/${project_name}.py"
+#touch "./controllers/${project_name}.py"
 
-touch "./models/${project_name}.py"
+#touch "./models/${project_name}.py"
 
-touch "./static/${project_name}.css"
+#touch "./static/${project_name}.css"
 
-touch "./templates/${project_name}.html"
+#touch "./templates/${project_name}.html"

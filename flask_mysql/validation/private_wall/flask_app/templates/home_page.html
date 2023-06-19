@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register or Log in</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home_page.css') }}">
+</head>
+
+<body>
+    <p style="text-align: center; margin: 0 auto;">
+        {% with messages = get_flashed_messages() %}
+                {% if messages: %}
+                    {% for message in messages: %}
+                        <p>{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </p>
+            
+    <div class="big-container">
+        
+        <div class="left-container">
+            
+            <h1>Registration</h1>
+            
+            <form action="/register"method="post">
+                
+                <label for="first_name">First Name: 
+                    <input type="text" name="first_name" value="Mallory">
+                </label>
+                                
+                <label for="last_name">Last Name: 
+                    <input type="text" name="last_name" value="Vallory">
+                </label>
+                                
+                <label for="email">Email: 
+                    <input type="text" name="email" value="mallory@vallory.io">
+                </label>
+                                
+                <label for="confirm_email">Confirm Email: 
+                    <input type="text" name="confirm_email" value="mallory@vallory.io">
+                </label>                
+                
+                <label for="password">Password: 
+                    <input type="password" name="password" value="hahatoto">
+                </label>                
+                
+                <label for="confirm_password">Confirm Password: 
+                    <input type="password" name="confirm_password" value="hahatoto">
+                </label>                
+                
+                <input type="submit" value="Register">
+                
+            </form>
+            
+        </div>        
+        
+        <div class="right-container">
+            
+            <h1>Login</h1>            
+            
+            <form action="/">
+                
+                <label for="login-email">Email: 
+                    <input type="text" name="login-email" value="mockery@smockery.aol">
+                </label>
+                                
+                <label for="login-password">Password: 
+                    <input type="text" name="login-password" value="hahatoto">
+                </label>                
+                
+                <input type="submit" value="Log In">
+                
+            </form>
+            
+            
+        </div>
+        
+    </div>   
+                 
+    
+            
+</body>
+</html>

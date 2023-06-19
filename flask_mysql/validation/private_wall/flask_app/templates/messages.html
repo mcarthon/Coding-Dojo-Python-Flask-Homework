@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='messages.css') }}">
+</head>
+
+<body>
+    
+    <div class="topnav">
+        <h1>CodingDojo Wall</h1>
+        <h2>Welcome, {{loser.first_name}}</h2>
+    </div>            
+    
+    <div class="big-container">
+        <div class="left-container">
+            <h3>{{messages|length}} unread messages</h3>
+            
+            {% for i in messages: %}
+                <p></p>
+                <p> {{message}}</p>
+            {% endfor %}
+            
+        </div>
+        
+        <div class="right-container">
+            <h3>Send Messages</h3>
+            <h3>You have {{messages|length}} message(s) so far</h3>
+            <select>
+                {% for loser in all_losers: %}
+                <option>{{loser.first_name}} ~ " " ~ {{ loser.last_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    
+</body>
+</html>
