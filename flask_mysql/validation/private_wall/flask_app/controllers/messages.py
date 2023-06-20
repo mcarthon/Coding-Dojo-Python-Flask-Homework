@@ -16,15 +16,15 @@ def wall(id: int):
     
     loser = Loser.get_loser_by_id(data)
     
-    messages = Message.get_loser_messages(data)
+    all_things = Message.dashboard_messages(data)
     
-    senders = Loser.get_sender_data(data)
+    sent_messages_count = Message.count_sent_messages(data)   
     
     return render_template("dashboard.html", 
                             loser = loser,
-                            messages = messages,
-                            senders = senders,
-                            other_losers = other_losers)
+                            all_things = all_things,
+                            other_losers = other_losers,
+                            sent_messages_count = sent_messages_count)
 
 @app.route("/send-message/<int:id>", methods=["POST"])
 def send_message(id: int):
@@ -33,9 +33,25 @@ def send_message(id: int):
         receiver_id = int(request.form["receiver_id"]),
         sender_id   = id,
         message     = request.form["message"]
-    )      
+    ) 
     
-    Message.send_message(data)
+    print()     
+    
+    message_id = Message.send_message(data)
+    
+    data["message_id"] = message_id
+    
     Exchange.message_sent(data)
                  
     return redirect(f"/wall/{id}")
+    
+@app.route("/delete/<int:receiver_id>/<int:message_id>")    
+def delete_message(receiver_id: int, message_id: int):
+    
+    data = dict(
+        message_id = message_id
+    )
+    
+    Message.delete_message(data)
+    
+    return redirect(f"/wall/{receiver_id}")

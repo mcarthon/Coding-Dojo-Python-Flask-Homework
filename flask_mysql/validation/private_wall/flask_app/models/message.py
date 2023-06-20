@@ -1,6 +1,5 @@
 from flask_app.config.mysqlconnection import connectToMySQL as conn
 from flask_app import schema
-from flask import flash
 
 class Message:
     
@@ -40,16 +39,49 @@ class Message:
                           VALUES
                           (%(message)s);
                           """                          
-        result = conn(schema).query_db(query, data)                
-        return result               
+                       
+        return conn(schema).query_db(query, data)      
         
     @classmethod
-    def get_message_id(cls, data):     
+    def dashboard_messages(cls, data):
         
         query = """
-                SELECT id
-                FROM messages
-                WHERE message LIKE %(message)s;
-                """                
-        result = conn(schema).query_db(query, data)                
-        return result                 
+                SELECT *,
+                TIMESTAMPDIFF(MINUTE, messages.updated_at, NOW()) AS minutes_passed 
+                FROM exchanges
+                JOIN losers
+                ON losers.id = exchanges.sender_id
+                JOIN messages
+                ON messages.id = exchanges.message_id
+                WHERE exchanges.receiver_id = %(id)s;
+                """  
+                
+        query_results = conn(schema).query_db(query, data)
+        
+        stuffs = []
+        
+        for stuff in query_results:
+            stuffs.append(stuff)
+
+        return stuffs 
+        
+    @classmethod
+    def count_sent_messages(cls, data):
+        
+        query = """
+                SELECT COUNT(exchanges.id) AS num_messages_sent
+                FROM  exchanges
+                WHERE exchanges.sender_id = %(id)s;
+                """                             
+                
+        return conn(schema).query_db(query, data)[0]["num_messages_sent"]
+        
+    @classmethod
+    def delete_message(cls, data):
+        
+        query = """
+                DELETE FROM exchanges
+                WHERE message_id = %(message_id)s;
+                """        
+                
+        conn(schema).query_db(query, data)

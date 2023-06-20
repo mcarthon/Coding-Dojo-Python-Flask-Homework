@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Messages</title>
-    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='messages.css') }}"> -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dashboard.css') }}">
 </head>
 
 <body>
@@ -18,18 +18,19 @@
     
     <div class="big-container">
         <div class="left-container">
-            <h3>{{messages|length}} unread messages</h3>
+            <h3>{{all_things|length}} unread messages</h3>
             
-            {% for message in messages: %}
-                <p></p>
-                <p> {{message.message}}</p>
+            {% for row in all_things: %}
+                <p>{{row["first_name"]}} said ({{row["minutes_passed"]}} minutes ago)</p>
+                <p> {{row["message"]}}</p>
+                <a href="/delete/{{row['receiver_id']}}/{{row['message_id']}}"><img src="{{ url_for('static', filename='trash-can.png') }}"></a>
             {% endfor %}
             
         </div>
         
         <div class="right-container">
             <h3>Send Messages</h3>
-            <h3>You have sent {{messages|length}} message(s) so far</h3>            
+            <h3>You have sent {{sent_messages_count}} message(s) so far</h3>            
             
             <form action="/send-message/{{loser.id}}" method="post">
                 {% for other_loser in other_losers: %}

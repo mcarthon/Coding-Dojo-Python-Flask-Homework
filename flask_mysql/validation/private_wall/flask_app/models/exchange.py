@@ -16,11 +16,9 @@ class Exchange:
     @classmethod    
     def message_sent(self, data):                
         
-        data["message_id"] = Message.get_message_id(data)
-        
         query = """
                 INSERT INTO exchanges
-                (sender_id, receiver_id)
+                (sender_id, receiver_id, message_id)
                 VALUES
                  (%(sender_id)s, %(receiver_id)s, %(message_id)s);
                 """ 
