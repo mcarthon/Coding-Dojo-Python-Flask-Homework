@@ -32,5 +32,18 @@ def register():
         
     return redirect("/")
         
-        
+@app.route("/login", methods = ["POST"])
+def login():
     
+    data = dict(
+        email    = request.form["login-email"],
+        password = request.form["login-password"]
+    )                               
+   
+    if Loser.validate_login(data):
+        
+        loser = Loser.get_loser_by_email({"email": request.form["login-email"]})              
+        
+        return redirect(f"/wall/{loser.id}")
+
+    return redirect("/")       

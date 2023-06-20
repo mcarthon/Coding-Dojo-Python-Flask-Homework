@@ -1,7 +1,7 @@
 from flask_app.config.mysqlconnection import connectToMySQL as conn
 from flask import flash
 import re
-from flask_app import schema
+from flask_app import schema, bcrypt
 
 EMAIL_REGEX  = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
@@ -21,7 +21,7 @@ class Loser:
         
         query = """
                 SELECT * 
-                FROM losers
+                FROM losers;
                 """
                 
         query_results = conn(schema).query_db(query)
@@ -31,7 +31,25 @@ class Loser:
         for loser in query_results:
             losers.append(cls(loser))
             
-        return losers           
+        return losers    
+        
+    @classmethod
+    def get_other_losers(cls, data):
+        
+        query = """
+                SELECT *
+                FROM losers
+                WHERE id != %(id)s;
+                """               
+                
+        query_results = conn(schema).query_db(query, data)
+        
+        other_losers = []
+        
+        for other_loser in query_results:
+            other_losers.append(cls(other_loser)) 
+            
+        return other_losers            
         
     @classmethod
     def get_loser_by_email(cls, data):
@@ -40,9 +58,14 @@ class Loser:
                 SELECT *
                 FROM losers
                 WHERE email = %(email)s;
-                """                
-                
-        return cls(conn(schema).query_db(query, data)[0])
+                """                               
+        
+        query_result = conn(schema).query_db(query, data) 
+        
+        if len(query_result) < 1:
+            return False
+        return cls(query_result[0])
+            
         
     @classmethod
     def get_loser_by_id(cls, data):
@@ -53,7 +76,11 @@ class Loser:
                 WHERE id = %(id)s;
                 """                
                 
-        return cls(conn(schema).query_db(query, data)[0])        
+        query_result = conn(schema).query_db(query, data) 
+        
+        if len(query_result) < 1:
+            return False
+        return cls(query_result[0])       
         
     
     @staticmethod        
@@ -104,5 +131,36 @@ class Loser:
                 
         return conn(schema).query_db(query, data)     
         
-                       
-                                    
+    @staticmethod
+    def validate_login(data):
+        
+        if not Loser.get_loser_by_email({"email": data["email"]}):
+            flash("This email has not been registered")        
+            return False
+            
+        loser = Loser.get_loser_by_email({"email": data["email"]})        
+              
+        if not bcrypt.check_password_hash(loser.password, data["password"]):
+            flash("The password does not match our records")    
+            return False      
+            
+        return True         
+        
+    @classmethod
+    def get_sender_data(cls, data):
+        
+        query = """
+                SELECT * 
+                FROM exchanges
+                JOIN losers
+                ON losers.id = exchanges.sender_id
+                WHERE exchanges.receiver_id = %(id)s;               
+                """           
+        query_results = conn(schema).query_db(query, data)
+        
+        senders = []
+        
+        for sender in query_results:
+            senders.append(cls(sender))
+        
+        return senders                                                                                                                                                    

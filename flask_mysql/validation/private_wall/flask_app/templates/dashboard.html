@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages</title>
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='messages.css') }}"> -->
+</head>
+
+<body>
+    
+    <div class="topnav">
+        <h1>CodingDojo Wall</h1>
+        <h2>Welcome, {{loser.first_name}}</h2>
+        <a href="/">Home</a>
+    </div>            
+    
+    <div class="big-container">
+        <div class="left-container">
+            <h3>{{messages|length}} unread messages</h3>
+            
+            {% for message in messages: %}
+                <p></p>
+                <p> {{message.message}}</p>
+            {% endfor %}
+            
+        </div>
+        
+        <div class="right-container">
+            <h3>Send Messages</h3>
+            <h3>You have sent {{messages|length}} message(s) so far</h3>            
+            
+            <form action="/send-message/{{loser.id}}" method="post">
+                {% for other_loser in other_losers: %}
+                    <input type="hidden" name="receiver_id" value="{{other_loser.id}}">
+                    <label>{{other_loser.first_name}}</label>
+                    <input type="text" name="message">
+                    <input type="submit" value="Send">
+                {% endfor %}                                               
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>
