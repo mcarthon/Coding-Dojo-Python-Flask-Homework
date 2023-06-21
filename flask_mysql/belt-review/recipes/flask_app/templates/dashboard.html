@@ -34,12 +34,12 @@
                     {% else %}                        
                         <td>No</td>
                     {% endif %}                    
-                    <td>{{info.first_name}} {{info.last_name}}</td>
+                    <td>{{info.author.first_name}} {{info.author.last_name}}</td>
                     <td>
-                        <a href="/view-recipe/{{info.recipe_id}}">view recipe</a>
+                        <a href="/view-recipe/{{info.id}}">view recipe</a>
                         {% if session["id"] == info.user_id %}
-                            <a href="/edit-page/{{info.recipe_id}}">edit</a>
-                            <a href="/delete-recipe/{{info.recipe_id}}">delete</a>
+                            <a href="/edit-page/{{info.id}}">edit</a>
+                            <a href="/delete-recipe/{{info.id}}">delete</a>
                         {% endif %}
                     </td>
                 </tr>

@@ -1,6 +1,7 @@
 from flask_app.config.mysqlconnection import connectToMySQL as conn
 from flask_app import schema
 from flask import flash
+from flask_app.models import user
 
 class Recipe:
     
@@ -9,7 +10,7 @@ class Recipe:
         self.name         = data["name"]
         self.under        = data["under"]
         self.user_id      = data["user_id"]
-        self.descriptions = data["description"]
+        self.description  = data["description"]
         self.instructions = data["instructions"]
         self.created_at   = data["created_at"]
         self.updated_at   = data["updated_at"]
@@ -38,48 +39,107 @@ class Recipe:
     def get_all_info(cls):
         
         query = """
-                SELECT recipes.id AS recipe_id,
-        	    users.id AS user_id,
-                first_name,
-                last_name,
-                name, 
-                under,
-                users.created_at AS user_created_at,
-                users.updated_at AS user_updated_at,
-                recipes.created_at AS recipe_created_at,
-                recipes.updated_at AS recipe_updated_at,
-                instructions,
-                description
+                SELECT *
                 FROM users
                 JOIN recipes
                 WHERE recipes.user_id = users.id;
                 """        
                 
-        return [recipe_info for recipe_info in conn(schema).query_db(query)]  
+        results = conn(schema).query_db(query)
+        
+        all_recipes = []
+        
+        for result in results:
+            
+            user_data = dict(
+                
+                id         = result["id"],
+                first_name = result["first_name"],
+                last_name  = result["last_name"],
+                email      = result["email"],
+                password   = result["password"]
+                
+            )
+            
+            recipe_data = dict(
+                
+                id           = result["recipes.id"],
+                name         = result["name"],
+                under        = result["under"],
+                user_id      = result["user_id"],
+                description  = result["description"],
+                instructions = result["instructions"],
+                created_at   = result["recipes.created_at"],
+                updated_at   = result["recipes.updated_at"]
+                
+            )
+            
+            recipe = cls(recipe_data)
+            
+            recipe.author = user.User(user_data)
+            
+            all_recipes.append(recipe)
+            
+        return all_recipes            
+                        
+                                                         
         
     @classmethod
     def get_one_info(cls, data):
         
         query = """
-                SELECT recipes.id AS recipe_id,
-        	    users.id AS user_id,
+                SELECT recipes.id,
+        	    users.id,
                 first_name,
                 last_name,
                 name, 
+                email,
+                password,
                 under,
-                users.created_at AS user_created_at,
-                users.updated_at AS user_updated_at,
-                DATE(recipes.created_at) AS recipe_created_at,
-                DATE(recipes.updated_at) AS recipe_updated_at,
+                user_id,                
+                users.created_at,
+                users.updated_at,
+                DATE(recipes.created_at),
+                DATE(recipes.updated_at),
                 instructions,
                 description
                 FROM users
                 JOIN recipes
                 WHERE recipes.user_id = users.id
                 AND recipes.id = %(id)s;
-                """        
+                """   
                 
-        return conn(schema).query_db(query, data)[0]        
+        result = conn(schema).query_db(query, data)[0] 
+        
+        user_data = dict(
+            
+            id         = result["users.id"],
+            first_name = result["first_name"],
+            last_name  = result["last_name"],
+            email      = result["email"],
+            password   = result["password"]
+            
+        )                                        
+        
+        recipe_data = dict(
+            
+            id           = result["id"],
+            name         = result["name"],
+            under        = result["under"],
+            user_id      = result["user_id"],
+            description  = result["description"],
+            instructions = result["instructions"],
+            created_at   = result["DATE(recipes.created_at)"],
+            updated_at   = result["DATE(recipes.updated_at)"]                        
+            
+        )
+        
+        recipe = cls(recipe_data) 
+        
+        recipe.author = user.User(user_data) 
+        
+        return recipe     
+               
         
     @classmethod
     def create_new(cls, data):

@@ -12,24 +12,24 @@
     <h1>Welcome, {{session["first_name"]}}</h1>            
     <a href="/logged-in/{{session['id']}}">+ back to recipes</a>
     <a href="/logout">Logout</a>
-    <h2>{{recipe["name"]}}</h2>
-    <h2>Posted By {{recipe["first_name"]}}</h2>
+    <h2>{{recipe.name}}</h2>
+    <h2>Posted By {{recipe.author.first_name}}</h2>
     
     <h3>Description</h3>
-    <p>{{recipe["description"]}}</p>
+    <p>{{recipe.description}}</p>
     
     <h3>Under 30 minutes?</h3>
-    {% if recipe["under"] == 1 %}
+    {% if recipe.under == 1 %}
         <p>Yes</p>
     {% else %}            
         <p>No</p>
     {% endif %}
     
     <h3>Instructions</h3>
-    <p>{{recipe["instructions"]}}</p>
+    <p>{{recipe.instructions}}</p>
     
     <h3>Date Made</h3>
-    <p>{{recipe["recipe_created_at"]}}</p>
+    <p>{{recipe.created_at}}</p>
     
     
     

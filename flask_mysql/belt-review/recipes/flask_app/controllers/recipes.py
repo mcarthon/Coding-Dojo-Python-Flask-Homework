@@ -6,17 +6,20 @@ from flask_app.models.recipe import Recipe
 @app.route("/logged-in/<int:id>")
 def logged_in(id: int):
     
-    user = User.get_user({"id": session["id"]})
-    
-    session["first_name"] = user.first_name
-    session["last_name"]  = user.last_name   
-    
-    recipes = Recipe.get_all()
-    all_info  = Recipe.get_all_info()
-    
-    return render_template("dashboard.html", 
-                            recipes = recipes,
-                            all_info = all_info)
+    if "id" in session:
+        user = User.get_user({"id": session["id"]})
+        
+        session["first_name"] = user.first_name
+        session["last_name"]  = user.last_name   
+        
+        recipes = Recipe.get_all()
+        all_info  = Recipe.get_all_info()
+        
+        return render_template("dashboard.html", 
+                                recipes = recipes,
+                                all_info = all_info)
+                                
+    return redirect("/")                                
     
 @app.route("/view-recipe/<int:id>")
 def view_recipe(id: int):
