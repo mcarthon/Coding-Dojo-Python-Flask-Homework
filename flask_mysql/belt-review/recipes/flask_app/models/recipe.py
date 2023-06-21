@@ -1,5 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL as conn
 from flask_app import schema
+from flask import flash
 
 class Recipe:
     
@@ -108,4 +109,41 @@ class Recipe:
                 WHERE id = %(id)s;
                 """        
                 
-        return conn(schema).query_db(query, data)                
+        return conn(schema).query_db(query, data)       
+        
+    @classmethod
+    def delete_recipe(cls, data):
+        
+        query = """
+                DELETE FROM recipes
+                WHERE id = %(id)s;
+                """
+        return conn(schema).query_db(query, data)    
+        
+    @staticmethod
+    def validate_recipe(data):
+        
+        print(f"\n\nupdate data\n{data}\n\n")
+        
+        if len(data["name"]) < 1:  
+            flash("You need to give the name for the recipe")
+            return False
+            
+        if len(data["description"]) < 1:
+            flash("You need to give the description for the recipe")            
+            return False
+            
+        if len(data["instructions"]) < 1:
+            flash("You give the instructions for the recipe")            
+            return False
+            
+        if not data["created_at"]:
+            flash("You need to give the date for the recipe")            
+            return False
+            
+        if not data["under"]:
+            flash("We need to know if the recipe is less then 30 minutes")                
+            return False
+            
+        return True            
+                              

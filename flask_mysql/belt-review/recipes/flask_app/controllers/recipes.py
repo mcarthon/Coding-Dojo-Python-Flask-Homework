@@ -36,7 +36,10 @@ def edit_page(recipe_id: int):
     
     recipe = Recipe.get_one_info({"id": recipe_id})
     
-    return render_template("edit-recipe.html", recipe = recipe)
+    if "id" in session:
+        return render_template("edit-recipe.html", recipe = recipe)
+        
+    return redirect("/")        
 
 
     
@@ -49,16 +52,23 @@ def update_recipe(id: int):
         name = request.form["name"],
         description = request.form["description"],
         instructions = request.form["instructions"],
-        under = int(request.form["under"]),
+        under = request.form["under"],
         created_at = request.form["created_at"]
         
     ) 
-         
-    Recipe.update_info(data)
     
-    recipe = Recipe.get_one({"id": id})
-    
-    return redirect(f"/view-recipe/{id}")
+    print(f"\n\nupdate request.form\n{request.form}\n\n")
+        
+    if Recipe.validate_recipe(data):
+             
+        Recipe.update_info(data)
+        
+        recipe = Recipe.get_one({"id": id})
+                
+        return redirect(f"/view-recipe/{id}")
+        
+    return redirect(f"/edit-page/{id}")
+            
     
 @app.route("/delete-recipe/<int:id>")
 def delete_recipe(id: int):
@@ -69,14 +79,17 @@ def delete_recipe(id: int):
         
     )      
     
-    recipe = Recipe.delete_recipe(data)
+    Recipe.delete_recipe(data)
     
     return redirect(f"/logged-in/{session['id']}")    
     
 @app.route("/new-recipe-page")
 def new_recipe_page():
     
-    return render_template("new_recipe.html")
+    if "id" in session:
+        return render_template("new_recipe.html")
+        
+    return redirect("/")        
     
 @app.route("/create-new-recipe", methods = ["POST"])
 def create_new_recipe():
@@ -88,13 +101,14 @@ def create_new_recipe():
         description  = request.form["description"],
         instructions = request.form["instructions"],
         created_at   = request.form["created_at"],
-        under        = int(request.form["under"])
+        under        = request.form["under"]
         
     )
     
-    id = Recipe.create_new(data)  
+    if Recipe.validate_recipe(data):
     
-    return redirect(f"/view-recipe/{id}")
-              
-    
+        id = Recipe.create_new(data)  
         
+        return redirect(f"/view-recipe/{id}")
+              
+    return redirect("/new-recipe-page")     

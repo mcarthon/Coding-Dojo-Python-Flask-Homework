@@ -90,6 +90,10 @@ class User:
         if data["email"] in emails:
             flash("This email address has already been registered foo!")
             return False
+            
+        if data["password"] != data["confirm-password"]:
+            flash("The two passwords do not match")
+            return False
         
         return True                                         
             
