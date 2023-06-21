@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes</title>
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='my_style.css') }}"> -->
+</head>
+
+<body>
+    <h1>Add a New Recipe!</h1>            
+    <a href="/logged-in/{{session['id']}}">+ back to recipes</a>
+    <a href="/logout">Logout</a>
+    
+    {% with messages = get_flashed_messages() %}
+        {% if messages: %}
+            {% for message in messages: %}
+                <p>{{message}}</p>                   
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    <form action="/create-new-recipe" method="post">
+        <label>Name</label>        
+        <input type="text" name="name" value="Cheerios">
+        
+        <label>Description</label>        
+        <input type="text" name="description" value="good cereal">
+        
+        <label>Instructions</label>        
+        <input type="text" name="instructions" value="cook it up like grandmama">
+        
+        <label>Date Made</label>
+        <input type="date" name="created_at">
+        
+        <label for="30min" >Under 30 minutes?</label>
+        <label for="30miny">Yes</label>
+        <input type="radio" id="30min" name="under" value="1" checked>
+        <label for="30minn">No</label>
+        <input type="radio" id="30min" name="under" value="0">
+        
+        <input type="submit">
+    </form>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='my_style.css') }}"> -->
+</head>
+
+<body>
+    <h1>Welcome, {{session["first_name"]}}</h1>    
+    
+    <a href="/new-recipe-page">+ Create</a>
+    <a href="/logout">Logout</a>
+    
+    <h2>All posted recipes: </h2>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Under</th>
+                <th>Posted By</th>
+                <th>Actions</th>
+            </tr>            
+        </thead>
+        <tbody>
+            {% for info in all_info: %}            
+                <tr>
+                    <td>{{info.name}}</td>
+                    {% if info.under == 1 %}
+                        <td>Yes</td>
+                    {% else %}                        
+                        <td>No</td>
+                    {% endif %}                    
+                    <td>{{info.first_name}} {{info.last_name}}</td>
+                    <td>
+                        <a href="/view-recipe/{{info.recipe_id}}">view recipe</a>
+                        {% if session["id"] == info.user_id %}
+                            <a href="/edit-page/{{info.recipe_id}}">edit</a>
+                            <a href="/delete-recipe/{{info.recipe_id}}">delete</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</body>
+</html>
