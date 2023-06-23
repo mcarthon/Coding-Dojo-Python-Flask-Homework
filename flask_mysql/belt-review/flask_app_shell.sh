@@ -1,6 +1,6 @@
 #!/bin/bash
 
-project_folder_name="recipes"
+project_folder_name="tv-shows"
 
 mkdir "${project_folder_name}"
 
@@ -12,7 +12,7 @@ mkdir flask_app
 
 touch server.py
 
-pipenv install flask PyMySQL flask-bcrypt
+py -m pipenv install flask PyMySQL flask-bcrypt
 
 cd flask_app
 

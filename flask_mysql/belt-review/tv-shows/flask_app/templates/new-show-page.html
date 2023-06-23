@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a New Show</title>
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='my_style.css') }}"> -->
+</head>
+
+<body>
+    <h1>Add a New Show!</h1>            
+    <a href="/logged-in">TV Shows</a>
+    <a href="/logout">Logout</a>
+    
+    {% with messages = get_flashed_messages() %}
+        {% if messages: %}
+            {% for message in messages: %}
+                <p>{{message}}</p>                   
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    <form action="/create-new-show" method="post">
+        <label>Name</label>        
+        <input type="text" name="title" value="Dexter's Laboratory">
+        
+        <label>Network</label>        
+        <input type="text" name="network" value="Cartoon Network">
+        
+        <label>Release Date</label>
+        <input type="date" name="release_date">
+        
+        <label>Description</label>        
+        <input type="text" name="description" value="He had the best wardrobe of all the times">
+        <input type="submit">
+    </form>
+</body>
+</html>

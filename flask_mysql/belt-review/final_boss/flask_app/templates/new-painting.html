@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paintings</title>
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='my_style.css') }}"> -->
+</head>
+
+<body>
+    <h1>Add a Painting</h1>            
+    <a href="/logged-in">Dashboard</a>
+    <a href="/logout">Logout</a>
+    
+    {% with messages = get_flashed_messages() %}
+        {% if messages: %}
+            {% for message in messages: %}
+                <p>{{message}}</p>                   
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    <form action="/create-new-painting" method="post">
+        <label>Title</label>        
+        <input type="text" name="title" value="Tori's Painting">
+        
+        <label>Description</label>        
+        <input type="text" name="description" value="Nacho Painting">
+        
+        <label>Price</label>        
+        <input type="number" name="price" value="50">
+        
+        <label>Quantity</label>        
+        <input type="number" name="quantity" value="2">
+        
+        <input type="submit">
+    </form>
+</body>
+</html>
