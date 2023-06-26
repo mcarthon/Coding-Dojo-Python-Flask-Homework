@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DojoWeather</title>
+    <link rel="stylesheet" href="DojoWeather.css">
+</head>
+
+<body>
+    <div class="topbar">
+        <div class="top-menu">
+            <div class="logo">
+                <h1>
+                    DojoWeather
+                </h1>
+            </div>
+            <div class="cities-container">
+                <div class="top-city" id="cityone">
+                    <h2 onclick="cityAlert('London,uk')">
+                        London
+                    </h2>
+                </div>
+                <div class="top-city" id="citytwo">
+                    <h2 onclick="cityAlert('Paris,fr')">
+                        Paris
+                    </h2>
+                </div>
+                <div class="top-city" id="citythree">
+                    <h2 onclick="cityAlert('Munich,de')">
+                        Munich
+                    </h2>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="city-temp-bar">
+        <div class="city">
+            <h1>
+                San Jose
+            </h1>
+        </div>
+        <div class="temp-container">
+            <div class="temp-dropdown">
+                <form>
+                    <label for="temperature">
+                        show temperature in
+                    </label>
+                    <select name="temperature" id="dropdown" onchange="tempConversion()">
+                        <option value="F">
+                            F
+                        </option>
+                        <option value="C" selected="selected">
+                            C
+                        </option>
+                    </select>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="forecast-parent">
+        <div class="forecast-container">
+            <div class="day">
+                <h1>
+                    Today
+                </h1>
+                <div class="precip-container">
+                    <img src="./assets/some_rain.png">
+                </div>
+                <h3>
+                    some rain
+                </h3>
+                <div class="high-low-container">
+                    <h1 class="hi">
+                        24º
+                    </h1>
+                    <h1 class="lo">
+                        18º
+                    </h1>
+                </div>
+            </div>
+            <div class="day">
+                <h1>
+                    Tomorrow
+                </h1>
+                <div class="precip-container">
+                    <img src="./assets/some_sun.png">
+                </div>
+                <h3>
+                    some sun
+                </h3>
+                <div class="high-low-container">
+                    <h1 class="hi">
+                        27º
+                    </h1>
+                    <h1 class="lo">
+                        19º
+                    </h1>
+                </div>
+            </div>
+            <div class="day">
+                <h1>
+                    Friday
+                </h1>
+                <div class="precip-container">
+                    <img src="./assets/some_clouds.png">
+                </div>
+                <h3>
+                    some clouds
+                </h3>
+                <div class="high-low-container">
+                    <h1 class="hi">
+                        21º
+                    </h1>
+                    <h1 class="lo">
+                        16º
+                    </h1>
+                </div>
+            </div>
+            <div class="day">
+                <h1>
+                    Tomorrow
+                </h1>
+                <div class="precip-container">
+                    <img src="./assets/some_sun.png">
+                </div>
+                <h3>
+                    some sun
+                </h3>
+                <div class="high-low-container">
+                    <h1 class="hi">
+                        26º
+                    </h1>
+                    <h1 class="lo">
+                        21º
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cookies-container">
+        <div class="cookies">
+            <img src="./assets/cookie.png">
+        </div>
+        <div class="cookies-text">
+            <h2>
+                Stop! Cookie time
+            </h2>
+            <p>
+                We use cookies (sadly not the edible ones) to
+                personalize content and ads, to social media features,
+                and to analyse our traffic. <a href="">Read more...</a>
+            </p>
+        </div>
+        <div class="cookies">
+            <button onclick="removeCookies(this)">
+                I Accept
+            </button>
+        </div>
+    </div>
+    <script src="DojoWeather.js"></script>
+</body>
+
+</html>
