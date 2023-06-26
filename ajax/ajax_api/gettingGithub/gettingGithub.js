@@ -1,6 +1,3 @@
-// console.log(`\n\ndocument.querySelector('#username'): \n${document.querySelector('#username').value}\n\n`);
-
-
 async function githubAPI() {
     
     const input = document.querySelector('#username').value;  
