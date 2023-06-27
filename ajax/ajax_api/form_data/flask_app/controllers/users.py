@@ -4,7 +4,7 @@ from flask import render_template, jsonify, request, redirect
 from flask_app.models.user import User
 
 @app.route('/')
-def index():
+def index():    
     return render_template('index.html')
 
 
